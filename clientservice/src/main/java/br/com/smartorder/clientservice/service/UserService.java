@@ -9,6 +9,7 @@ import br.com.smartorder.clientservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,6 +34,12 @@ public class UserService {
         UserEntity user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
 
         userRepository.delete(user);
+
+    }
+
+    public List<UserResponseDto> getAll(){
+
+        return userRepository.findAll().stream().map(UserResponseDto::new).toList();
 
     }
 

@@ -7,10 +7,13 @@ import br.com.smartorder.clientservice.exception.EmailAlreadyUsedException;
 import br.com.smartorder.clientservice.exception.UserNotFoundException;
 import br.com.smartorder.clientservice.service.UserService;
 import jakarta.validation.Valid;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -30,6 +33,11 @@ public class UserController {
         userService.delete(id);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping
+    public List<UserResponseDto> getAll() {
+        return userService.getAll();
     }
 
 }
