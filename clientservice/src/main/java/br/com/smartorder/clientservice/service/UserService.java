@@ -7,6 +7,7 @@ import br.com.smartorder.clientservice.exception.EmailAlreadyUsedException;
 import br.com.smartorder.clientservice.exception.UserNotFoundException;
 import br.com.smartorder.clientservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,11 +38,27 @@ public class UserService {
 
     }
 
-    public List<UserResponseDto> getAll(){
+    public List<UserResponseDto> getAll() {
 
         return userRepository.findAll().stream().map(UserResponseDto::new).toList();
 
     }
+
+    public UserResponseDto updateUser(UserRequestDto request, Long id) throws UserNotFoundException {
+
+        UserEntity user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+
+        user.setName(request.getName());
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
+
+        userRepository.save(user);
+
+        return new UserResponseDto(user);
+
+    }
+
+    //para amanhã 09-12 é testar se esse metodo de atualizar esta correto
 
 }
 

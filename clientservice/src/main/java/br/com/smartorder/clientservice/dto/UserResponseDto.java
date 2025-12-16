@@ -4,7 +4,6 @@ import br.com.smartorder.clientservice.entity.UserEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Getter
 @NoArgsConstructor
 public class UserResponseDto {
@@ -17,4 +16,5 @@ public class UserResponseDto {
         this.name = user.getName();
         this.email = user.getEmail();
     }
+
 }
