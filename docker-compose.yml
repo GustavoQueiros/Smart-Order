@@ -1,0 +1,53 @@
+version: '3.9'
+
+services:
+  ms-users:
+    image: postgres:15
+    container_name: ms-users
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: usersdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ms_users_data:/var/lib/postgresql/data
+    networks:
+      - ms-network
+
+  ms-order:
+    image: postgres:15
+    container_name: ms-order
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: orderdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - ms_order_data:/var/lib/postgresql/data
+    networks:
+      - ms-network
+
+  ms-product:
+    image: postgres:15
+    container_name: ms-product
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: productdb
+    ports:
+      - "5434:5432"
+    volumes:
+      - ms_product_data:/var/lib/postgresql/data
+    networks:
+      - ms-network
+
+volumes:
+  ms_users_data:
+  ms_order_data:
+  ms_product_data:
+
+networks:
+  ms-network:
+    driver: bridge
