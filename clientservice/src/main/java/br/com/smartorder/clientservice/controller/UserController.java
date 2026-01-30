@@ -44,7 +44,7 @@ public class UserController {
 
         userService.updateUser(request, id);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("User Update");
+        return ResponseEntity.status(HttpStatus.CREATED).body("User Updated");
 
     }
 

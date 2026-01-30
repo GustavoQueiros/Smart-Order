@@ -7,7 +7,6 @@ import br.com.smartorder.clientservice.exception.EmailAlreadyUsedException;
 import br.com.smartorder.clientservice.exception.UserNotFoundException;
 import br.com.smartorder.clientservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +26,6 @@ public class UserService {
             return new UserResponseDto(userRepository.save(request.toEntity()));
         }
         throw new EmailAlreadyUsedException();
-
     }
 
     public void delete(Long id) throws UserNotFoundException {
